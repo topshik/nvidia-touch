@@ -3,6 +3,7 @@ set -e
 sudo rm -rf nvidia-touch
 git clone git@github.com:topshik/nvidia-touch.git
 cd nvidia-touch
+kill $(pidof python) || :
 kill $(pidof screen) || :
 #tmux kill-server
 #tmux start-server
@@ -24,7 +25,10 @@ kill $(pidof screen) || :
 #tmux new -d -s main
 #tmux send-keys -t main C-z 'sudo npm start' Enter
 
-screen -d -m bash -c 'conda activate web && sudo /home/semenkin.anton/anaconda3/envs/web/bin/python touch/manage.py runserver 0.0.0.0:443'
+#screen -d -m bash -c 'conda activate web && sudo /home/semenkin.anton/anaconda3/envs/web/bin/python touch/manage.py runserver 0.0.0.0:443'
+conda activate web
+sudo /home/semenkin.anton/anaconda3/envs/web/bin/python touch/manage.py runserver 0.0.0.0:443 &
+disown %%
 
 cd nvidia-touch-frontend/
 sudo npm install
