@@ -25,7 +25,7 @@ jobs:
     - name: deploy
       run: |
         echo "${{ secrets.PRIVATE_KEY }}" > .private_key
-        ssh -i .private_key -A "bash -s" < launcher.sh
+        ssh -i .private_key -A 'bash -s' < launcher.sh
 
 #    - name: test
 #      run: |
