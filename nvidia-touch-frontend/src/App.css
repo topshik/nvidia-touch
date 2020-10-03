@@ -19,8 +19,8 @@ img {
 
 .search-card {
   transition: filter 0.2s;
-  background-color: #EEEEEE;
-  color: black;
+  background-color: #333333;
+  color: white;
   text-align: left;
   margin-top: 10px;
 }
@@ -67,9 +67,23 @@ img {
   border-color: #4F7302;
 }
 
-.btn-primary:active, .btn-primary:focus {
+.btn-primary:active, .btn-primary.active, .btn-primary:focus {
   background-color: #2C4001 !important;
   border-color: #2C4001 !important;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  background-color: #84BF04 !important;
+}
+
+.coffee-profile-img {
+  border-radius: 30px;
+  /* max-height: 80%;
+  max-width: 80%; */
+}
+
+input[type=text] {
+  background-color: #DDDDDD !important;
 }
 
 .App {

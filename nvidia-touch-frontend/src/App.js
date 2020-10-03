@@ -12,8 +12,9 @@ import { Profile } from "./components/Profile"
 import { ProjectHunt } from "./components/ProjectHunt"
 import { RandomCoffee } from "./components/RandomCoffee"
 
-export const API_URL = "http://nvidia-touch.com:443/api";
-// export const API_URL = "http://192.168.1.7:8000/api";
+// export const API_URL = "http://nvidia-touch.com:443/api";
+export const API_URL = "http://192.168.1.7:8000/api";
+export const MY_ID = "117";
 
 function App() {
   return (
@@ -31,7 +32,7 @@ function App() {
           <a className="nav-link" href="/projecthunt">Project Hunt</a>
         </li>
         <li className="nav-item nvidia-nav-item">
-          <a className="nav-link" href="/coffee" tabindex="-1" aria-disabled="true">Random Coffee</a>
+          <a className="nav-link" href="/coffee" tabIndex="-1" aria-disabled="true">Random Coffee</a>
         </li>
       </ul>
 
@@ -42,13 +43,13 @@ function App() {
             <Search api_url={API_URL}/>
           </Route>
           <Route path="/profile">
-            <Profile api_url={API_URL}/>
+            <Profile api_url={API_URL} my_id={MY_ID}/>
           </Route>
           <Route path="/projecthunt">
             <ProjectHunt api_url={API_URL}/>
           </Route>
           <Route path="/coffee">
-            <RandomCoffee api_url={API_URL}/>
+            <RandomCoffee api_url={API_URL} my_id={MY_ID}/>
           </Route>
         </Switch>
       </div>

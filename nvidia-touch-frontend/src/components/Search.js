@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import { Container, Row, Col, InputGroup, FormControl, Button } from 'react-bootstrap'
 import axios from "axios";
 import logo from "../static/logo.jpeg"
@@ -20,6 +21,9 @@ export class Search extends Component {
     }
 
     render () {
+        if (this.state.redirect) {
+            return <Redirect push to={this.state.redirect} />;
+        }
         return (
             <div className="container nvidia-search-logo">
                 <div className="row justify-content-md-center">
@@ -62,8 +66,8 @@ export class Search extends Component {
         var { projects, employees} = this.state;
         projects = projects.filter((item) => this.filterPredicate(this.state.searchText, item))
         employees = employees.filter((item) => this.filterPredicate(this.state.searchText, item))
-        projects = projects.map((project) => <ProjectCard item={project}/>)
-        employees = employees.map((employee) => <EmployeeCard item={employee}/>)
+        projects = projects.map((project) => <ProjectCard key={project.link} item={project}/>).slice(0, 20)
+        employees = employees.map((employee) => <EmployeeCard key={employee.url} item={employee} goToPage={this.goToPage}/>).slice(0, 20)
         return employees.concat(projects)
     }
 
@@ -73,13 +77,17 @@ export class Search extends Component {
         fields = fields.map((field) => field in item && item[field].toLowerCase().includes(query))
         return fields.some((a) => a)
     }
+
+    goToPage = (url) => {
+        this.setState({redirect: url})
+    }
   }
   
   class ProjectCard extends Component {
     render = () => {
         return (
             <div className="row">
-                <div className="col card search-card">
+                <div className="col card search-card" onClick={() => this.goToPage("https://www.notion.so/Copy-of-TensorFlow-90332709b63c40f4b46db922aec27523")}>
                 <div className="card-body">
                     <h5 className="card-title">{this.props.item.name}</h5>
                     <h6 className="card-subtitle mb-2 text-muted">Project</h6>
@@ -89,13 +97,19 @@ export class Search extends Component {
             </div>
         )
     }
+    
+    goToPage = (url) => {
+        var win = window.open(url, '_blank');
+        win.focus();
+    }
 }
 
 class EmployeeCard extends Component {
     render = () => {
         return (
-            <div className="row">
-                <div className="col card search-card">
+            <div className="row" key={this.getId()}>
+                <div className="col card search-card" 
+                onClick={() =>  this.props.goToPage("/profile/" + this.getId())}>
                 <div className="card-body">
                     <div className="row">
                         <div className="col-md-8">
@@ -111,5 +125,11 @@ class EmployeeCard extends Component {
                 </div>
             </div>
         )
+    }
+
+    getId = () => {
+        var split = this.props.item.url.split("/");
+        var id = split[split.length - 2];
+        return id
     }
 }
