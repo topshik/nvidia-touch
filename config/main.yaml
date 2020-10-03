@@ -1,0 +1,13 @@
+app:
+  host: 0.0.0.0
+  port: 80
+  endpoint: search
+  url: http://${app.host}:${app.port}/${app.endpoint}
+
+hydra:
+  job_logging:
+    formatters:
+      simple:
+        format: '[%(levelname)s] %(name)s: %(message)s'
+    root:
+      handlers: [console]
