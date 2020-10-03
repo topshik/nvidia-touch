@@ -12,9 +12,9 @@ img {
   max-width: 100%;
 }
 
-/* .search-card-photo {
-  float: right;
-} */
+.search-card-photo {
+  border-radius: 100%;
+}
 
 .search-card {
   text-align: left;
