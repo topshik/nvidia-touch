@@ -12,6 +12,19 @@ img {
   max-width: 100%;
 }
 
+/* .search-card-photo {
+  float: right;
+} */
+
+.search-card {
+  text-align: left;
+  margin-top: 10px;
+}
+
+.search-card:hover {
+  cursor: pointer;
+}
+
 .nvidia-search-logo {
   margin-top: 60px;
 }
