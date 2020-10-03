@@ -35,6 +35,7 @@ disown %%
 
 cd nvidia-touch-frontend/
 sudo npm install
-screen -d -m bash -c 'sudo npm start'
+sudo npm start &
+disown %%
 
 echo ALL STARTED
