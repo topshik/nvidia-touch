@@ -25,7 +25,7 @@ SECRET_KEY = '!h(qw*z%xz#myj)o9@jdhy244xozoyos2p(jk4g&uue6ut0il-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["nvidia-touch.com"]
 
 
 # Application definition
