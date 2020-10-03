@@ -3,7 +3,7 @@ set -e
 sudo rm -rf nvidia-touch
 git clone git@github.com:topshik/nvidia-touch.git
 cd nvidia-touch
-sudo kill $(pidof python) || :
+sudo kill $(ps ax | grep touch/manage.py | cut -d' ' -f1) || :
 sudo kill $(pidof screen) || :
 #tmux kill-server
 #tmux start-server
@@ -26,8 +26,6 @@ sudo kill $(pidof screen) || :
 #tmux send-keys -t main C-z 'sudo npm start' Enter
 
 #screen -d -m bash -c 'conda activate web && sudo /home/semenkin.anton/anaconda3/envs/web/bin/python touch/manage.py runserver 0.0.0.0:443'
-
-source ~/.bashrc
 
 conda activate web
 sudo /home/semenkin.anton/anaconda3/envs/web/bin/python touch/manage.py runserver 0.0.0.0:443 &
