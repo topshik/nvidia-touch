@@ -32,7 +32,7 @@ jobs:
                 UseKeychain yes
                 IdentityFile ~/.ssh/key" > ~/.ssh/config
         ssh-add ~/.ssh/key
-        chmod 400 .private_key
+        chmod 400 ~/.ssh/key
         ssh -o StrictHostKeyChecking=no -i ~/.ssh/key -A semenkin.anton@34.91.4.75 'bash -s' < launcher.sh
 
 #    - name: test
