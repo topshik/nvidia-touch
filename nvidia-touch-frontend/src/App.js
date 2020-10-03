@@ -12,6 +12,9 @@ import { Profile } from "./components/Profile"
 import { ProjectHunt } from "./components/ProjectHunt"
 import { RandomCoffee } from "./components/RandomCoffee"
 
+export const API_URL = "http://nvidia-touch.com:443/api";
+// export const API_URL = "http://192.168.1.7:8000/api";
+
 function App() {
   return (
     <div className="App">
@@ -36,16 +39,16 @@ function App() {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route exact path="/">
-            <Search />
+            <Search api_url={API_URL}/>
           </Route>
           <Route path="/profile">
-            <Profile />
+            <Profile api_url={API_URL}/>
           </Route>
           <Route path="/projecthunt">
-            <ProjectHunt />
+            <ProjectHunt api_url={API_URL}/>
           </Route>
           <Route path="/coffee">
-            <RandomCoffee />
+            <RandomCoffee api_url={API_URL}/>
           </Route>
         </Switch>
       </div>
