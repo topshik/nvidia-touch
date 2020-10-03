@@ -1,7 +1,21 @@
 import shutil
 import requests
 
+site = 'http://localhost/api/employees/'
 file = open("Employees.csv")
+
+def push(id, name, email, refers_to_id, project_name, position_name, skills):
+	thispersondoesnotexist = 'https://thispersondoesnotexist.com/image'
+
+	response = requests.get(thispersondoesnotexist, stream=True)
+	with open('img.png', 'wb') as out_file:
+	    shutil.copyfileobj(response.raw, out_file)
+	del response
+
+	with open('img.png', 'rb') as image:
+		print(requests.post(site, files={'photo': image}, data={'name': name, 'email' : email, 'skills' : skills}).json())
+
+
 
 data = []
 for line in file.readlines():
@@ -11,14 +25,6 @@ for line in file.readlines():
 
 
 for (id, name, email, refers_to_id, project_name, position_name, skills) in data:
-	thispersondoesnotexist = 'https://thispersondoesnotexist.com/image'
+	push(id, name, email, refers_to_id, project_name, position_name, skills)
 
-	response = requests.get(thispersondoesnotexist, stream=True)
-	with open('img.png', 'wb') as out_file:
-	    shutil.copyfileobj(response.raw, out_file)
-	del response
 
-	site = 'http://nvidia-touch.com:443/api/employees/'
-
-	with open('img.png', 'rb') as image:
-		print(requests.post(site, files={'photo': image}, data={'name': name, 'email' : email, 'skills' : skills}).json())
