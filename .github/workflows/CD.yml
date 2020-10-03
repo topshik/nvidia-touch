@@ -31,7 +31,7 @@ jobs:
                 AddKeysToAgent yes
                 UseKeychain yes
                 IdentityFile ~/.ssh/key" > ~/.ssh/config
-        ssh-add -K ~/.ssh/key
+        ssh-add ~/.ssh/key
         chmod 400 .private_key
         ssh -o StrictHostKeyChecking=no -i ~/.ssh/key -A semenkin.anton@34.91.4.75 'bash -s' < launcher.sh
 
