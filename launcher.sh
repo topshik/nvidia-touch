@@ -28,7 +28,7 @@ sudo kill $(pidof screen) || :
 #screen -d -m bash -c 'conda activate web && sudo /home/semenkin.anton/anaconda3/envs/web/bin/python touch/manage.py runserver 0.0.0.0:443'
 
 #conda activate web
-/home/semenkin.anton/anaconda3/envs/web/bin/python -m pip install -r requirements.txt
+#/home/semenkin.anton/anaconda3/envs/web/bin/python -m pip install -r requirements.txt
 sudo /home/semenkin.anton/anaconda3/envs/web/bin/python touch/manage.py runserver 0.0.0.0:443 &
 disown %%
 
