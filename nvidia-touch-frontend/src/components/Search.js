@@ -7,7 +7,18 @@ export const API_URL = "http://127.0.0.1:8000/api";
 
 export class Search extends Component {
     state = {
-        searchResults: []
+        searchText: "",
+        projects: [],
+        employees: [],
+    }
+
+    componentDidMount = () => {
+        axios.get(API_URL + "/employees").then(res => {
+            this.setState((prevState) => ({...prevState, employees: res.data.results}));
+        })
+        axios.get(API_URL + "/projects").then(res => {
+            this.setState((prevState) => ({...prevState, projects: res.data.results}));
+        })
     }
 
     render () {
@@ -21,7 +32,10 @@ export class Search extends Component {
                 <div className="row justify-content-md-center">
                     <div className="col-md-8">
                         <div className="input-group mb-3">
-                        <input type="text" className="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="button-addon2"/>
+                        <input type="text" className="form-control" 
+                            placeholder="" aria-label="Recipient's username" 
+                            aria-describedby="button-addon2" value={this.state.searchText} 
+                            onChange={this.handleSearchTextChange}/>
                         <div className="input-group-append">
                             <button className="btn btn-primary" type="button" id="button-addon2"
                             onClick={this.getResults}
@@ -34,19 +48,31 @@ export class Search extends Component {
                 {/* Result */}
                 <Row>
                     <Col>
-                        {this.state.searchResults.map((name) => <div key={name}>{name}</div>)}
+                        {this.getResults()}
                     </Col>
                 </Row>
             </div>
         );
     }
 
+    handleSearchTextChange = (event) => {
+        this.setState({searchText: event.target.value});
+    }
+
     getResults = () => {
-        axios.get(API_URL + "/employees").then(res => {
-            var result = res.data.results.map((user) => user.name);
-            this.setState({searchResults: result});
+        if (this.state.searchText === "") return <div></div>
+        var results = this.state.projects.concat(this.state.employees);
+        results = results.filter((item) => this.filterPredicate(this.state.searchText, item))
+        return results.map((item) => {
+            return <div style={{color: "white"}}>{item.name}</div>
         })
-        // axios.get(API_URL + "/employees").then(res => this.setState({ searchResults: res.data }));
+    }
+
+    filterPredicate = (query, item) => {
+        query = query.toLowerCase();
+        var fields = ["name", "description", "email"];
+        fields = fields.map((field) => field in item && item[field].toLowerCase().includes(query))
+        return fields.some((a) => a)
     }
   }
   
