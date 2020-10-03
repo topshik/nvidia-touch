@@ -3,7 +3,7 @@ set -e
 sudo rm -rf nvidia-touch
 git clone git@github.com:topshik/nvidia-touch.git
 cd nvidia-touch
-kill $(pidof screen)
+kill $(pidof screen) || :
 #tmux kill-server
 #tmux start-server
 
