@@ -12,13 +12,14 @@ img {
   max-width: 100%;
 }
 
-/* .search-card-photo {
-  float: right;
-} */
+.search-card-photo {
+  height: 100%;
+}
 
 .search-card {
   text-align: left;
   margin-top: 10px;
+  overflow-x: hidden;
 }
 
 .search-card:hover {
