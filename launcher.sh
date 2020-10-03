@@ -1,4 +1,6 @@
-rm -rf nvidia-touch
+set -e
+
+sudo rm -rf nvidia-touch
 git clone git@github.com:topshik/nvidia-touch.git
 cd nvidia-touch
 tmux kill-server
