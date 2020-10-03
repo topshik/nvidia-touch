@@ -24,6 +24,7 @@ jobs:
 
     - name: deploy
       run: |
+        mkdir -p .ssh
         echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/key
         eval "$(ssh-agent -s)"
         echo "Host *
