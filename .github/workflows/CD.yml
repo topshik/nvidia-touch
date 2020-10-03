@@ -40,11 +40,11 @@ jobs:
 #          make test; \
 #        fi
 
-    - name: notification
-      if: always()
-      uses: xinthink/action-telegram@v1.1
-      with:
-        botToken: ${{ secrets.BOT_TOKEN }}
-        chatId: ${{ secrets.CHAT_ID }}
-        jobStatus: ${{ job.status }}
-        skipSuccess: false
+#    - name: notification
+#      if: always()
+#      uses: xinthink/action-telegram@v1.1
+#      with:
+#        botToken: ${{ secrets.BOT_TOKEN }}
+#        chatId: ${{ secrets.CHAT_ID }}
+#        jobStatus: ${{ job.status }}
+#        skipSuccess: false
