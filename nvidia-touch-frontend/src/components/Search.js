@@ -3,7 +3,7 @@ import { Container, Row, Col, InputGroup, FormControl, Button } from 'react-boot
 import axios from "axios";
 import logo from "../static/logo.jpeg"
 
-export const API_URL = "http://127.0.0.1:8000/api";
+export const API_URL = "http://nvidia-touch.com:443/api";
 
 export class Search extends Component {
     state = {
