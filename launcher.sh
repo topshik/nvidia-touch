@@ -4,7 +4,8 @@ sudo rm -rf nvidia-touch
 git clone git@github.com:topshik/nvidia-touch.git
 cd nvidia-touch
 sudo kill $(ps ax | grep touch/manage.py | cut -d' ' -f1) || :
-sudo kill $(ps ax | grep -i screen | cut -d' ' -f1) || :
+sudo pkill -f npm || :
+sudo pkill -f node || :
 #tmux kill-server
 #tmux start-server
 
