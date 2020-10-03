@@ -26,12 +26,12 @@ jobs:
       run: |
         mkdir -p ~/.ssh
         echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/key
+        chmod 400 ~/.ssh/key
         eval "$(ssh-agent -s)"
         echo "Host *
                 AddKeysToAgent yes
                 IdentityFile ~/.ssh/key" > ~/.ssh/config
         ssh-add ~/.ssh/key
-        chmod 400 ~/.ssh/key
         ssh -o StrictHostKeyChecking=no -i ~/.ssh/key -A semenkin.anton@34.91.4.75 'bash -s' < launcher.sh
 
 #    - name: test
