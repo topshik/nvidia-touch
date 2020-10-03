@@ -1,8 +1,10 @@
 import shutil
 import requests
+from load_data import load
 
 site = 'http://localhost/api/employees/'
-file = open("Employees.csv")
+
+data = load()
 
 def push(id, name, email, refers_to_id, project_name, position_name, skills):
 	thispersondoesnotexist = 'https://thispersondoesnotexist.com/image'
@@ -17,14 +19,9 @@ def push(id, name, email, refers_to_id, project_name, position_name, skills):
 
 
 
-data = []
-for line in file.readlines():
-	id, name, email, refers_to_id, project_name, position_name, _ = line.split("\"")[0].split(",")
-	skills = line.split("\"")[1]
-	data.append((id, name, email, refers_to_id, project_name, position_name, skills))
+print(data)
 
-
-for (id, name, email, refers_to_id, project_name, position_name, skills) in data:
-	push(id, name, email, refers_to_id, project_name, position_name, skills)
+# for (id, name, email, refers_to_id, project_name, position_name, skills) in data:
+# 	push(id, name, email, refers_to_id, project_name, position_name, skills)
 
 
