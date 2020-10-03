@@ -1,0 +1,8 @@
+flask
+sqlalchemy
+hydra-core
+Pillow
+django-rest
+django-filter
+django-rest-swagger
+
