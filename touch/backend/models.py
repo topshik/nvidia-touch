@@ -3,7 +3,7 @@ from django.db import models
 
 class Project(models.Model):
 	name = models.CharField(max_length=200)
-	description = models.TextField(max_length=200)
+	description = models.TextField(max_length=1000)
 	link = models.URLField(max_length=200)
 	members = models.ManyToManyField('employee', blank=True)
 	open_positions = models.CharField(max_length=1000)
