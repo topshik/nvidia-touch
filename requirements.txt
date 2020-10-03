@@ -6,3 +6,4 @@ django-rest
 django-filter
 djangorestframework==3.11
 drf-yasg==1.17
+django-cors-headers
