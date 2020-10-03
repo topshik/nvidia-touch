@@ -13,13 +13,12 @@ img {
 }
 
 .search-card-photo {
-  height: 100%;
+  border-radius: 100%;
 }
 
 .search-card {
   text-align: left;
   margin-top: 10px;
-  overflow-x: hidden;
 }
 
 .search-card:hover {
