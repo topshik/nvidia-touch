@@ -37,7 +37,7 @@ jobs:
       if: always()
       uses: xinthink/action-telegram@v1.1
       with:
-        botToken: ${{ secrets.BOTTOKEN }}
-        chatId: ${{ secrets.CHATID }}
+        botToken: ${{ secrets.BOT_TOKEN }}
+        chatId: ${{ secrets.CHAT_ID }}
         jobStatus: ${{ job.status }}
         skipSuccess: false
