@@ -4,5 +4,5 @@ hydra-core
 Pillow
 django-rest
 django-filter
-django-rest-swagger
-
+djangorestframework==3.11
+drf-yasg==1.17
