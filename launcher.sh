@@ -4,6 +4,7 @@ sudo rm -rf nvidia-touch
 git clone git@github.com:topshik/nvidia-touch.git
 cd nvidia-touch
 tmux kill-server
+tmux start-server
 
 #conda activate web
 #sudo python touch/manage.py runserver 0.0.0.0:443 &
