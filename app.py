@@ -8,8 +8,19 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def hello_world():
-    return "Hello, World!"
+@app.route('/search', methods=['GET'])
+def get_search_page():
+    return f"Search page"
+
+
+@app.route('/profile/id<int:user_id>', methods=['GET'])
+def get_profile(user_id: int):
+    return f"Profile {user_id}"
+
+
+@app.route('/project/id<int:project_id>', methods=['GET'])
+def get_project(project_id: int):
+    return f"Project {project_id}"
 
 
 @hydra.main(config_name='config/main.yaml')
