@@ -29,7 +29,6 @@ jobs:
         eval "$(ssh-agent -s)"
         echo "Host *
                 AddKeysToAgent yes
-                UseKeychain yes
                 IdentityFile ~/.ssh/key" > ~/.ssh/config
         ssh-add ~/.ssh/key
         chmod 400 ~/.ssh/key
