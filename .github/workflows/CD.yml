@@ -1,0 +1,43 @@
+name: CD
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python 3.x
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+        architecture: 'x64'
+
+    - name: Log changed files
+      uses: lots0logs/gh-action-get-changed-files@2.1.4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: deploy
+      run: |
+        echo ${{ secrets.PRIVATE_KEY }} > .private_key
+        ssh -i .private_key -A "bash -s" < launcher.sh
+
+#    - name: test
+#      run: |
+#        if [ $(cd ${HOME} && cat files_modified.json files_added.json files_deleted.json files_renamed.json | grep -v -E '.*\.md' | wc -l) -ne 0 ]; then \
+#          make test; \
+#        fi
+
+    - name: notification
+      if: always()
+      uses: xinthink/action-telegram@v1.1
+      with:
+        botToken: ${{ secrets.BOTTOKEN }}
+        chatId: ${{ secrets.CHATID }}
+        jobStatus: ${{ job.status }}
+        skipSuccess: false
