@@ -1,6 +1,9 @@
 flask
 sqlalchemy
 hydra-core
+python-rest-framework
+pillow
+
 
 asgiref
 certifi
