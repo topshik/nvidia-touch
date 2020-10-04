@@ -12,8 +12,8 @@ import { Profile } from "./components/Profile"
 import { ProjectHunt } from "./components/ProjectHunt"
 import { RandomCoffee } from "./components/RandomCoffee"
 
-export const API_URL = "http://nvidia-touch.com:443/api";
-// export const API_URL = "http://192.168.1.7:8000/api";
+// export const API_URL = "http://nvidia-touch.com:443/api";
+export const API_URL = "http://192.168.1.7:8000/api";
 export const MY_ID = "117";
 
 function App() {
@@ -41,6 +41,12 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Search api_url={API_URL}/>
+          </Route>
+          <Route path="/profile/:id" 
+          render={(props) => (
+            <Profile {...props} api_url={API_URL} />
+          )}
+          >
           </Route>
           <Route path="/profile">
             <Profile api_url={API_URL} my_id={MY_ID}/>
