@@ -18,4 +18,4 @@ sudo npm start
 ```
 
 Tech stack slides:
-![Tech](https://ibb.co/djMW1xy)
+![Tech](https://i.ibb.co/sbRmkzr/slide.jpg)
