@@ -21,28 +21,24 @@ def CreateRandomCoffee(request, pk):
     rand_employee = Employee.objects.filter(coffee_math=None).order_by('?').first()
     myself = Employee.objects.get(pk=pk)
 
-    rand_employee.coffee_math = myself
+    rand_employee.coffee_match = myself
     rand_employee.save()
 
-    myself.coffee_math = rand_employee
+    myself.coffee_match = rand_employee
     myself.save()
-
 
     serializer = EmployeeSerializer(rand_employee, context={'request': request})
     return HttpResponse(str(serializer.data))
 
 def DeleteRandomCoffee(request, pk):
     myself = Employee.objects.get(pk=pk)
-    other = myself.coffee_math
+    other = myself.coffee_match
 
-
-    other.coffee_math = None
+    other.coffee_match = None
     other.save()
 
-    myself.coffee_math = None
+    myself.coffee_match = None
     myself.save()
 
-
-    serializer = EmployeeSerializer(rand_employee, context={'request': request})
-    return HttpResponse(str(serializer.data))
+    return HttpResponse("{'status' : 200}")
 

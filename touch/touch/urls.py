@@ -34,6 +34,7 @@ schema_view = get_schema_view(
 urlpatterns = [
   path('api/', include(router.urls)),
   path('api/createrandomcoffee/<int:pk>/', views.CreateRandomCoffee),
+  path('api/deleterandomcoffee/<int:pk>/', views.DeleteRandomCoffee),
 
 
   path('admin/', admin.site.urls),
