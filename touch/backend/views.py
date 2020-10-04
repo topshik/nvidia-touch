@@ -18,8 +18,12 @@ class ProjectViewSet(viewsets.ModelViewSet):
     permission_classes = []
 
 def CreateRandomCoffee(request, pk):
-    rand_employee = Employee.objects.filter(coffee_math=None).order_by('?').first()
+    rand_employee = Employee.objects.filter(coffee_match=None).exclude(pk=pk).order_by('?').first()
     myself = Employee.objects.get(pk=pk)
+
+    if myself.coffee_match != None:
+    	return HttpResponse("{'status' : 400}")
+
 
     rand_employee.coffee_match = myself
     rand_employee.save()
@@ -33,6 +37,9 @@ def CreateRandomCoffee(request, pk):
 def DeleteRandomCoffee(request, pk):
     myself = Employee.objects.get(pk=pk)
     other = myself.coffee_match
+
+    if myself.coffee_match == None:
+    	return HttpResponse("{'status' : 400}")
 
     other.coffee_match = None
     other.save()
