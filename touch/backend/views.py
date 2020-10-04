@@ -1,7 +1,7 @@
 from rest_framework import viewsets, generics, permissions, mixins
 from rest_framework.response import Response
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import Employee, Project
 from .serializers import EmployeeSerializer, ProjectSerializer
 
@@ -24,7 +24,6 @@ def CreateRandomCoffee(request, pk):
     if myself.coffee_match != None:
     	return HttpResponse("{'status' : 400}")
 
-
     rand_employee.coffee_match = myself
     rand_employee.save()
 
@@ -32,7 +31,13 @@ def CreateRandomCoffee(request, pk):
     myself.save()
 
     serializer = EmployeeSerializer(rand_employee, context={'request': request})
-    return HttpResponse(str(serializer.data))
+    
+    # request["Content-Type"] = "application/json"
+
+    # request.headers["Content-Type"] = "application/json"
+
+    # return JsonResponse(myself.__dict__)
+    return HttpResponse(str(serializer.data["url"]))
 
 def DeleteRandomCoffee(request, pk):
     myself = Employee.objects.get(pk=pk)
