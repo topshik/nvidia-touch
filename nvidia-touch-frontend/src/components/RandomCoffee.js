@@ -86,11 +86,37 @@ export class RandomCoffee extends Component {
     getMyself = () => {
       this.getEmployee(this.props.my_id).then(res => {
         this.setState((prevState) => ({...prevState, myEmployee: res.data}));
+        if (res.data.coffee_match) {
+          return this.getEmployee(this.getId(res.data.coffee_match));
+        } else {
+          return false;
+        }
+      }).then(res => {
+        this.setState((prevState) => ({...prevState, matchEmployee: res.data}));
       })
     }
 
     updateCoffee = (value) => {
-      this.setState({coffeeOn: value})
+      this.setState((prevState) => ({...prevState, coffeeOn: value}))
+      if (value) {
+        axios.get(this.props.api_url + "/createrandomcoffee/" + this.getMyId()).then(res => {
+          this.setState((prevState) => ({...prevState, matchEmployee: res.data}));
+        })
+      } else {
+        axios.get(this.props.api_url + "/deleterandomcoffee/" + this.getMyId())
+      }
+    }
+
+    getId = (url) => {
+      var split = url.split("/");
+      var id = split[split.length - 2];
+      return id
+    }
+
+    getMyId = () => {
+      var split = this.state.myEmployee.url.split("/");
+      var id = split[split.length - 2];
+      return id
     }
   }
   

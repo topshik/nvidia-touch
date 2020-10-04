@@ -107,9 +107,9 @@ export class Search extends Component {
 class EmployeeCard extends Component {
     render = () => {
         return (
-            <div className="row" key={this.getId()}>
+            <div className="row" key={this.getMyId()}>
                 <div className="col card search-card" 
-                onClick={() =>  this.props.goToPage("/profile/" + this.getId())}>
+                onClick={() =>  this.props.goToPage("/profile/" + this.getMyId())}>
                 <div className="card-body">
                     <div className="row">
                         <div className="col-md-8">
@@ -127,7 +127,7 @@ class EmployeeCard extends Component {
         )
     }
 
-    getId = () => {
+    getMyId = () => {
         var split = this.props.item.url.split("/");
         var id = split[split.length - 2];
         return id
