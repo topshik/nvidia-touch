@@ -42,13 +42,12 @@ export class RandomCoffee extends Component {
                 <div className="col">
                   Random coffee:
                   <div className="btn-group btn-block btn-group-toggle mt-3" data-toggle="buttons">
-                    <label className={"btn btn-primary " + (this.state.coffeeOn ? "active" : "")}
-                    onClick={() => {this.updateCoffee(true)}}>
-                      <input type="radio" name="options" id="option1" autoComplete="off"/> On
+                    <label className={"btn btn-primary " + (!!this.state.matchEmployee ? "active" : "")}
+                    >
+                      <input type="radio" name="options" id="option1" autoComplete="off" onClick={() => {this.updateCoffee(true)}}/> On
                     </label>
-                    <label className={"btn btn-primary " + (!this.state.coffeeOn ? "active" : "")}
-                    onClick={() => {this.updateCoffee(false)}}>
-                      <input type="radio" name="options" id="option3" autoComplete="off"/> Off
+                    <label className={"btn btn-primary " + (!this.state.matchEmployee ? "active" : "")}>
+                      <input type="radio" name="options" id="option3" autoComplete="off" onClick={() => {this.updateCoffee(false)}}/> Off
                     </label>
                   </div>
                 </div>
@@ -97,9 +96,14 @@ export class RandomCoffee extends Component {
     }
 
     updateCoffee = (value) => {
+      console.log(value)
       this.setState((prevState) => ({...prevState, coffeeOn: value}))
       if (value) {
         axios.get(this.props.api_url + "/createrandomcoffee/" + this.getMyId()).then(res => {
+          return res.data;
+        }).then(url => {
+          return axios.get(this.props.api_url + "/createrandomcoffee/" + this.getMyId())
+        }).then(res => {
           this.setState((prevState) => ({...prevState, matchEmployee: res.data}));
         })
       } else {
