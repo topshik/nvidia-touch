@@ -3,6 +3,7 @@ html {
 }
 
 body {
+  color: white;
   background-color: #090909;
   height: 100%;
 }
@@ -17,8 +18,16 @@ img {
 }
 
 .search-card {
+  transition: filter 0.2s;
+  background-color: #EEEEEE;
+  color: black;
   text-align: left;
   margin-top: 10px;
+}
+
+.search-card:hover {
+
+  filter: brightness(85%);  
 }
 
 .search-card:hover {
@@ -56,6 +65,11 @@ img {
 .btn-primary:hover {
   background-color: #4F7302;
   border-color: #4F7302;
+}
+
+.btn-primary:active, .btn-primary:focus {
+  background-color: #2C4001 !important;
+  border-color: #2C4001 !important;
 }
 
 .App {

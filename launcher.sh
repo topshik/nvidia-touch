@@ -4,7 +4,8 @@ sudo rm -rf nvidia-touch
 git clone git@github.com:topshik/nvidia-touch.git
 cd nvidia-touch
 sudo kill $(ps ax | grep touch/manage.py | cut -d' ' -f1) || :
-sudo kill $(pidof screen) || :
+sudo pkill -f npm || :
+sudo pkill -f node || :
 #tmux kill-server
 #tmux start-server
 
@@ -34,8 +35,7 @@ disown %%
 
 cd nvidia-touch-frontend/
 sudo npm install
-screen -d -m bash -c 'sudo npm start'
-
-
+sudo npm start &
+disown %%
 
 echo ALL STARTED
