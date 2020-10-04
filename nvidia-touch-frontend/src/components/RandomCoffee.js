@@ -102,12 +102,14 @@ export class RandomCoffee extends Component {
         axios.get(this.props.api_url + "/createrandomcoffee/" + this.getMyId()).then(res => {
           return res.data;
         }).then(url => {
-          return axios.get(this.props.api_url + "/createrandomcoffee/" + this.getMyId())
+          return this.getEmployee(this.getId(url));
         }).then(res => {
           this.setState((prevState) => ({...prevState, matchEmployee: res.data}));
         })
       } else {
-        axios.get(this.props.api_url + "/deleterandomcoffee/" + this.getMyId())
+        axios.get(this.props.api_url + "/deleterandomcoffee/" + this.getMyId()).then( res => {
+          this.setState((prevState) => ({...prevState, matchEmployee: null}));
+        })
       }
     }
 
