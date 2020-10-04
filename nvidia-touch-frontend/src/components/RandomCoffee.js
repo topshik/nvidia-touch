@@ -1,4 +1,5 @@
-import axios from "axios";
+import axios from "axios"
+import { Redirect } from 'react-router-dom'
 import React, { Component } from 'react'
 import defaultProfilePhoto from "../static/profile.jpg"
 
@@ -14,6 +15,9 @@ export class RandomCoffee extends Component {
     }
 
     render = () => {
+      if (this.state.redirect) {
+          return <Redirect push to={this.state.redirect} />
+      }
       return (
         <div className="container">
           <div className="row mt-3">
@@ -68,7 +72,7 @@ export class RandomCoffee extends Component {
               <div className="row mt-4">
                 <div className="col">
                 <h4>{this.state.matchEmployee ? 
-                this.state.matchEmployee.name : 
+                <EmployeeCard goToPage={this.goToPage} item={this.state.matchEmployee}/> : 
                 ""}</h4>
                 </div>
               </div>
@@ -124,5 +128,28 @@ export class RandomCoffee extends Component {
       var id = split[split.length - 2];
       return id
     }
+
+    goToPage = (url) => {
+      this.setState({redirect: url})
+    }
   }
   
+  class EmployeeCard extends Component {
+    render = () => {
+        return (
+          <div className="row justify-content-md-center">
+            <div className="col-md-8">
+              <button className="btn btn-block btn-primary" onClick={() =>  this.props.goToPage("/profile/" + this.getMyId())}>
+                Visit profile
+              </button>
+            </div>
+          </div>
+        )
+    }
+
+    getMyId = () => {
+        var split = this.props.item.url.split("/");
+        var id = split[split.length - 2];
+        return id
+    }
+}

@@ -78,8 +78,6 @@ input[type=range]::-webkit-slider-thumb {
 
 .coffee-profile-img {
   border-radius: 30px;
-  /* max-height: 80%;
-  max-width: 80%; */
 }
 
 input[type=text] {

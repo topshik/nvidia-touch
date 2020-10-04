@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import defaultProfilePhoto from "../static/profile.jpg";
 
 export class Profile extends Component {
@@ -50,7 +50,7 @@ export class Profile extends Component {
                         <div className="row text-left mt-3">
                             R&D Lead @neuro-inc. Graduated from MIPT, @yandexdataschool. Masters student at Skoltech.
                         </div>
-                        <button className="row btn-primary btn-block pull-left mt-3"> Edit </button>
+                        <button className="btn btn-primary btn-block pull-left mt-3"> Edit </button>
                         <div className="row text-left mt-3 "> <b>@nvidia</b> </div>
                         <div className="row text-left"> Russia, Moscow </div>
                         <div className="row text-left mt-2">
