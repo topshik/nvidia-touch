@@ -1,3 +1,6 @@
+import shutil
+import requests
+
 def load():
 	with open("Employees.csv") as file:
 		data = []
@@ -12,4 +15,10 @@ def load_urls():
 	with open("data_generator/websites.txt") as file:
 		return file.readlines()
 
+def update_photo():
+	thispersondoesnotexist = 'https://thispersondoesnotexist.com/image'
 
+	response = requests.get(thispersondoesnotexist, stream=True)
+	with open('img.png', 'wb') as out_file:
+	    shutil.copyfileobj(response.raw, out_file)
+	del response

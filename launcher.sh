@@ -34,8 +34,8 @@ sudo /home/semenkin.anton/anaconda3/envs/web/bin/python touch/manage.py runserve
 disown %%
 
 cd nvidia-touch-frontend/
-sudo npm install
-sudo npm start &
-disown %%
+#sudo npm install
+#sudo npm start &
+#disown %%
 
 echo ALL STARTED

@@ -16,3 +16,5 @@ class Employee(models.Model):
 	projects = models.ManyToManyField(Project, blank=True)
 	skills = models.CharField(max_length=1000)
 	photo = models.ImageField(upload_to='photos')
+	coffee_match = models.ForeignKey('self', related_name='employee', blank=True, null=True, on_delete=models.CASCADE)
+

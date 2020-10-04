@@ -17,6 +17,7 @@ router = routers.DefaultRouter()
 router.register(r'employees', views.EmployeeViewSet)
 router.register(r'projects', views.ProjectViewSet)
 
+
 schema_view = get_schema_view(
    openapi.Info(
       title="Snippets API",
@@ -31,7 +32,11 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-	path('api/', include(router.urls)),
+  path('api/', include(router.urls)),
+  path('api/createrandomcoffee/<int:pk>/', views.CreateRandomCoffee),
+  path('api/deleterandomcoffee/<int:pk>/', views.DeleteRandomCoffee),
+
+
   path('admin/', admin.site.urls),
   path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
   url(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
